@@ -1,7 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+//connect is used for reaching states directly from any component
+import { connect } from 'react-redux'
 
-function App() {
+//you need to pass to props whatever you specified to take from redux store
+function App({ posts }) {
   return (
     <div className="App">
       <header className="App-header">
@@ -17,9 +20,17 @@ function App() {
         >
           Learn React
         </a>
+        <ul>
+          {posts.map(post => <li key={post.id}>{post.title}</li>)}
+        </ul>
       </header>
     </div>
   );
 }
 
-export default App;
+//mapStateToProps determines what state from our store we want to pull into our component.
+const mapStateToProps = state => {
+  return { posts: state.posts }
+}
+
+export default connect(mapStateToProps)(App);
