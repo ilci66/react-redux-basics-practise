@@ -13,10 +13,20 @@ const reducer = (state = initialState, action) => {
       posts: state.posts.concat(action.payload)
     })
   }
+  if (action.type === 'LOAD_POSTS') {
+    return {
+      ...state,
+      posts: state.posts.concat(action.payload)
+    }
+  }
 
   return state
 }
 
-const store = createStore(reducer)
-
+// const store = createStore(reducer)
+//this is necessray to use the dev tools
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 export default store
