@@ -64,6 +64,7 @@ class App extends React.Component {
   }
 }
 
+//pull what you wanna use here
 const mapStateToProps = state => {
   return { posts: state.posts }
 }
